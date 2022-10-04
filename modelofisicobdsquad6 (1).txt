@@ -1,0 +1,67 @@
+/* Lógico_2: */
+
+CREATE TABLE escola (
+    nome_escola String,
+    estado_escola String,
+    cidade_escola String,
+    cep_escola String,
+    endereco_escola String,
+    telefone_escola String,
+    id_doacaoFK Integer,
+    id_escolaPK Integer PRIMARY KEY,
+    fk_questionario_ id_questPK Integer
+);
+
+CREATE TABLE parceiro (
+     id_parceiroPK Integer PRIMARY KEY,
+    nome_parceiro String,
+    estado_parceiro String,
+    cidade_parceiro String,
+    email_parceiro String,
+    ramoatividade_parceiro String,
+    id_doacaoFK Integer,
+    senha_parceiro String
+);
+
+CREATE TABLE questionario (
+     id_questPK Integer PRIMARY KEY,
+    id_escolaFK Integer,
+    pergunta1 String,
+    pergunta2 String,
+    pergunta3 String,
+    pergunta4 String,
+    data_preenchimento Datetime,
+    id_itens_gerados Integer
+);
+
+CREATE TABLE _doacao (
+    item_doacao String,
+    id_doacaoPK Integer PRIMARY KEY,
+    id_escolaFK Integer,
+    id_parceiroFK Integer
+);
+ 
+ALTER TABLE escola ADD CONSTRAINT FK_escola_2
+    FOREIGN KEY (fk_questionario_ id_questPK)
+    REFERENCES questionario ( id_questPK)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE escola ADD CONSTRAINT FK_escola_3
+    FOREIGN KEY (id_doacaoFK???)
+    REFERENCES ??? (???);
+ 
+ALTER TABLE parceiro ADD CONSTRAINT FK_parceiro_2
+    FOREIGN KEY (id_doacaoFK???)
+    REFERENCES ??? (???);
+ 
+ALTER TABLE questionario ADD CONSTRAINT FK_questionario_2
+    FOREIGN KEY (id_escolaFK???)
+    REFERENCES ??? (???);
+ 
+ALTER TABLE _doacao ADD CONSTRAINT FK__doacao_2
+    FOREIGN KEY (fk_parceiro_ id_parceiroPK, id_escolaFK???, id_parceiroFK???)
+    REFERENCES parceiro ( id_parceiroPK, ???, ???);
+ 
+ALTER TABLE _doacao ADD CONSTRAINT FK__doacao_3
+    FOREIGN KEY (fk_escola_id_escolaPK)
+    REFERENCES escola (id_escolaPK);
